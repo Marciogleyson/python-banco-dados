@@ -1,0 +1,9 @@
+py -m venv env -> criar um env
+
+env\Scripts\activate -> ativa o env (windows)		/        soucer env/bin/activate  -> ativa o enciromment (linux ou mac)
+
+pip install <nome do pacote do pip> -> instalar novas dependencias		/     pip install rich
+
+pip freeze > requirements.txt -> atualiza o arquivo de dependências ou cria um novo
+
+pip install -r requirements.txt -> instala as dependências do arquivo 'requirements.txt'
