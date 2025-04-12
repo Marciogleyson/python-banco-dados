@@ -32,18 +32,40 @@ def cadastrar(nome_produto: str):
 def listar_todos():
     try:
         conexao = abrir_conexao()
-        cursor = conexao.curso()
-        cursor = execute("select id, nome from produtos")
+        cursor = conexao.cursor()
+        cursor.execute("select id, nome from produtos")
         registros = cursor.fetchall()
 
-        produto = []
-        for regsitro in registros:
-            protudo = {
+        produtos = []
+        for registro in registros:
+            produto = {
                 "id": registro[0],
                 "nome": registro[1]
             }     
             produtos.append(produto)
-        return produto
+        return produtos
     except Exception as err:       
         print("Não foi possível carregar os produtos")
         print(err)
+
+def apagar(id_apagar: int):
+    try:
+        conexao = abrir_conexao()
+        cursor = conexao.cursor()
+        cursor.execute("DELETE FROM produtos WHERE id = %s", (id_apagar,))   
+        conexao.commit()
+        conexao.close()
+    except Exception as er:
+        print("Não foi possível apagar o registro")
+        print(er)   
+
+def editar(id_editar: int, nome: str):
+    try:
+        conexao = abrir_conexao()
+        cursor = conexao.cursor()
+        cursor.execute("UPDATE produtos SET nome = %s WHERE id = %s", (nome, id_editar))  
+        conexao.commit()
+        conexao.close()
+    except Exception as error:
+        print("Não foi possivel alterar o produto")
+        print(error)                
