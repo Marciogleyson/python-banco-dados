@@ -1,4 +1,4 @@
-# Estrutur do projeto
+# Estrutura do projeto
 
 ## src
 Pasta `src` é a pasta `source`, ou seja, ond fica nossos `códigos-fonte` 
